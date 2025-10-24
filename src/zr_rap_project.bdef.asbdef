@@ -1,0 +1,52 @@
+managed implementation in class ZBP_RAP_PROJECT unique;
+strict ( 2 );
+with draft;
+
+define behavior for ZR_RAP_PROJECT alias Project
+persistent table zrap_project
+draft table ZRAP_PROJECT_D
+etag master Locallastchanged
+lock master total etag Lastchangedat
+authorization master( global )
+
+{
+  field ( readonly )
+   ID,
+   Createdby,
+   Lastchangedat,
+   Lastchangedby,
+   Locallastchanged;
+
+  field ( numbering : managed )
+   ID;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Edit;
+  draft action Activate optimized;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  mapping for ZRAP_PROJECT
+  {
+    ID = id;
+    Name = name;
+    Description = description;
+    Type = type;
+    Status = status;
+    Cost = cost;
+    Currency = currency;
+    Startdate = startdate;
+    Plannedstartdate = plannedstartdate;
+    Startedintime = startedintime;
+    Createdby = createdby;
+    Createdat = createdat;
+    Lastchangedby = lastchangedby;
+    Lastchangedat = lastchangedat;
+    Locallastchanged = locallastchanged;
+  }
+}
