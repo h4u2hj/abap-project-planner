@@ -1,131 +1,121 @@
 @Metadata.layer: #CORE
 @UI: {
   headerInfo: {
-    typeName: 'Project', 
+    typeName: 'Project',
     typeNamePlural: 'Projects'
   }
 }
 annotate view ZC_RAP_PROJECT with
 {
   @UI.facet: [ {
-    id: 'idIdentification', 
-    type: #IDENTIFICATION_REFERENCE, 
-    label: 'Project', 
-    position: 10 
+    id: 'idIdentification',
+    type: #IDENTIFICATION_REFERENCE,
+    label: 'Project',
+    position: 10
   } ]
   @UI.hidden: true
   ID;
-  
+
   @UI.lineItem: [ {
-    position: 10 , 
-    importance: #MEDIUM, 
+    position: 10 ,
+    importance: #MEDIUM,
     label: 'Name'
   } ]
   @UI.identification: [ {
-    position: 10 , 
+    position: 10 ,
     label: 'Name'
   } ]
   Name;
-  
+
   @UI.lineItem: [ {
-    position: 20 , 
-    importance: #MEDIUM, 
+    position: 20 ,
+    importance: #MEDIUM,
     label: 'Description'
   } ]
   @UI.identification: [ {
-    position: 20 , 
+    position: 20 ,
     label: 'Description'
   } ]
   Description;
-  
+
   @UI.lineItem: [ {
-    position: 30 , 
-    importance: #MEDIUM, 
+    position: 30 ,
+    importance: #MEDIUM,
     label: 'Type'
   } ]
   @UI.identification: [ {
-    position: 30 , 
+    position: 30 ,
     label: 'Type'
   } ]
   Type;
-  
+
   @UI.lineItem: [ {
-    position: 40 , 
-    importance: #MEDIUM, 
+    position: 40 ,
+    importance: #MEDIUM,
     label: 'Status'
   } ]
   @UI.identification: [ {
-    position: 40 , 
+    position: 40 ,
     label: 'Status'
   } ]
   Status;
-  
+
   @UI.lineItem: [ {
-    position: 50 , 
-    importance: #MEDIUM, 
+    position: 50 ,
+    importance: #MEDIUM,
     label: 'Cost'
   } ]
   @UI.identification: [ {
-    position: 50 , 
+    position: 50 ,
     label: 'Cost'
   } ]
   Cost;
-  
+
   @UI.lineItem: [ {
-    position: 60 , 
-    importance: #MEDIUM, 
+    position: 60 ,
+    importance: #MEDIUM,
     label: 'Currency'
   } ]
   @UI.identification: [ {
-    position: 60 , 
+    position: 60 ,
     label: 'Currency'
   } ]
   Currency;
-  
+
   @UI.lineItem: [ {
-    position: 70 , 
-    importance: #MEDIUM, 
-    label: 'Startdate'
+    position: 80 ,
+    importance: #MEDIUM,
+    label: 'Planned start date'
   } ]
   @UI.identification: [ {
-    position: 70 , 
-    label: 'Startdate'
+    position: 80 ,
+    label: 'Planned start date'
   } ]
-  Startdate;
+  PlannedStartDate;
   
-  @UI.lineItem: [ {
-    position: 80 , 
-    importance: #MEDIUM, 
-    label: 'Plannedstartdate'
+    @UI.lineItem: [ {
+    position: 100 ,
+    importance: #MEDIUM,
+    label: 'Days till start'
   } ]
   @UI.identification: [ {
-    position: 80 , 
-    label: 'Plannedstartdate'
+    position: 100 ,
+    label: 'Days till start'
   } ]
-  Plannedstartdate;
-  
+  DaysToStart;
+
+
   @UI.lineItem: [ {
-    position: 90 , 
-    importance: #MEDIUM, 
-    label: ''
+    position: 110 ,
+    importance: #MEDIUM,
+    label: 'Created At'
   } ]
   @UI.identification: [ {
-    position: 90 , 
-    label: ''
+    position: 110 ,
+    label: 'Created At'
   } ]
-  Startedintime;
-  
-  @UI.lineItem: [ {
-    position: 100 , 
-    importance: #MEDIUM, 
-    label: ''
-  } ]
-  @UI.identification: [ {
-    position: 100 , 
-    label: ''
-  } ]
-  Createdat;
-  
+  CreatedAt;
+
   @UI.hidden: true
-  Locallastchanged;
+  LocalLastChanged;
 }

@@ -6,16 +6,16 @@ define behavior for ZR_RAP_PROJECT alias Project
 persistent table zrap_project
 draft table ZRAP_PROJECT_D
 etag master Locallastchanged
-lock master total etag Lastchangedat
+lock master total etag LastChangedAt
 authorization master( global )
 
 {
   field ( readonly )
    ID,
-   Createdby,
-   Lastchangedat,
-   Lastchangedby,
-   Locallastchanged;
+   CreatedBy,
+   LastChangedAt,
+   LastChangedBy,
+   LocalLastChanged;
 
   field ( numbering : managed )
    ID;
@@ -24,6 +24,8 @@ authorization master( global )
   create;
   update;
   delete;
+
+  action checkStartedInTime result[1] $self;
 
   draft action Edit;
   draft action Activate optimized;
@@ -40,13 +42,12 @@ authorization master( global )
     Status = status;
     Cost = cost;
     Currency = currency;
-    Startdate = startdate;
-    Plannedstartdate = plannedstartdate;
-    Startedintime = startedintime;
-    Createdby = createdby;
-    Createdat = createdat;
-    Lastchangedby = lastchangedby;
-    Lastchangedat = lastchangedat;
-    Locallastchanged = locallastchanged;
+    PlannedStartDate = plannedstartdate;
+    DaysToStart = daystostart;
+    CreatedBy = createdby;
+    CreatedAt = createdat;
+    LastChangedBy = lastchangedby;
+    LastChangedAt = lastchangedat;
+    LocalLastChanged = locallastchanged;
   }
 }
