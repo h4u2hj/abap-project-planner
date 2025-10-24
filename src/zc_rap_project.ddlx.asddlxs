@@ -7,12 +7,27 @@
 }
 annotate view ZC_RAP_PROJECT with
 {
-  @UI.facet: [ {
-    id: 'idIdentification',
-    type: #IDENTIFICATION_REFERENCE,
-    label: 'Project',
-    position: 10
-  } ]
+  @UI.facet:
+     [{
+       id: 'idIdentification',
+       type: #IDENTIFICATION_REFERENCE,
+       label: 'Project Planning App',
+       position: 10
+     }]
+  @UI: {
+  lineItem: [ { exclude: true } ,
+  {
+      type: #FOR_ACTION,
+      dataAction: 'checkStartedInTime' ,
+      label: 'Check Days till Start'
+  } ] ,
+  identification: [ { position: 1, label: 'ID' } ,
+  {
+      type: #FOR_ACTION,
+      dataAction: 'checkStartedInTime',
+      label: 'Check Days till Start'
+  }]}
+
   @UI.hidden: true
   ID;
 
@@ -92,11 +107,11 @@ annotate view ZC_RAP_PROJECT with
     label: 'Planned start date'
   } ]
   PlannedStartDate;
-  
-    @UI.lineItem: [ {
-    position: 100 ,
-    importance: #MEDIUM,
-    label: 'Days till start'
+
+  @UI.lineItem: [ {
+  position: 100 ,
+  importance: #MEDIUM,
+  label: 'Days till start'
   } ]
   @UI.identification: [ {
     position: 100 ,

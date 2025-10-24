@@ -14,33 +14,42 @@ CLASS lhc_project IMPLEMENTATION.
   ENDMETHOD.
   METHOD checkStartedInTime.
     DATA: lt_projects        TYPE TABLE FOR READ RESULT zr_rap_project,
-          ls_project         TYPE STRUCTURE FOR READ RESULT zr_rap_project,
-          lv_planned         TYPE d,
-          lv_current_date    TYPE d,
-          lv_daystostart     TYPE c,
+          lv_diff            TYPE i,
+          lv_text            TYPE string,
           lt_update_projects TYPE TABLE FOR UPDATE zr_rap_project.
 
     READ ENTITIES OF zr_rap_project
-      IN LOCAL MODE ENTITY Project
+      IN LOCAL MODE
+      ENTITY Project
       ALL FIELDS WITH CORRESPONDING #( keys )
       RESULT lt_projects.
 
-    LOOP AT lt_projects INTO ls_project.
-      lv_planned = ls_project-PlannedStartDate.
-      lv_current_date = cl_abap_context_info=>get_system_date( ).
-      IF lv_planned < lv_current_date.
+    DATA(lv_today) = cl_abap_context_info=>get_system_date( ).
 
+    LOOP AT lt_projects INTO DATA(ls_project).
+
+      lv_diff = ls_project-plannedstartdate - lv_today.
+
+      IF lv_diff > 0.
+        " e.g. '1 day' or '5 days'
+        lv_text = |{ lv_diff } day{ COND string( WHEN lv_diff = 1 THEN '' ELSE 's' ) }|.
       ELSE.
-
+        " today or already started in the past
+        lv_text = 'Project already started'.
       ENDIF.
 
-      APPEND VALUE #( id = ls_project-id daystostart = lv_daystostart )
-        TO lt_update_projects.
+      APPEND VALUE #( id = ls_project-id daystostart = lv_text )
+             TO lt_update_projects.
+    ENDLOOP.
+
+    IF lt_update_projects IS NOT INITIAL.
       MODIFY ENTITIES OF zr_rap_project IN LOCAL MODE
         ENTITY Project
         UPDATE FIELDS ( daystostart )
-        WITH lt_update_projects.
-    ENDLOOP.
+        WITH lt_update_projects
+        FAILED   DATA(ls_failed)
+        REPORTED DATA(ls_reported).
+    ENDIF.
 
     result = VALUE #( FOR projects IN lt_projects
                       ( id = projects-id %param = projects ) ).
