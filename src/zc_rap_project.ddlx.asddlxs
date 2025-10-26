@@ -11,7 +11,7 @@ annotate view ZC_RAP_PROJECT with
      [{
        id: 'idIdentification',
        type: #IDENTIFICATION_REFERENCE,
-       label: 'Project Planning App',
+       label: 'Project Plan Details',
        position: 10
      }]
   @UI: {
@@ -62,17 +62,21 @@ annotate view ZC_RAP_PROJECT with
     position: 30 ,
     label: 'Type'
   } ]
+  @UI.selectionField: [{position: 10}]
   Type;
 
   @UI.lineItem: [ {
     position: 40 ,
     importance: #MEDIUM,
-    label: 'Status'
+    label: 'Status',
+    criticality: 'StatusCriticality'
   } ]
   @UI.identification: [ {
     position: 40 ,
-    label: 'Status'
+    label: 'Status',
+    criticality: 'StatusCriticality'
   } ]
+  @UI.selectionField: [{position: 20}]
   Status;
 
   @UI.lineItem: [ {
@@ -86,50 +90,32 @@ annotate view ZC_RAP_PROJECT with
   } ]
   Cost;
 
-  @UI.lineItem: [ {
-    position: 60 ,
-    importance: #MEDIUM,
-    label: 'Currency'
-  } ]
-  @UI.identification: [ {
-    position: 60 ,
-    label: 'Currency'
-  } ]
+  @UI.hidden: true
   Currency;
 
   @UI.lineItem: [ {
-    position: 80 ,
+    position: 70 ,
     importance: #MEDIUM,
-    label: 'Planned start date'
+    label: 'Planned Start Date'
   } ]
   @UI.identification: [ {
-    position: 80 ,
-    label: 'Planned start date'
+    position: 70 ,
+    label: 'Planned Start Date'
   } ]
+  @UI.selectionField: [{position: 30}]
   PlannedStartDate;
 
   @UI.lineItem: [ {
-  position: 100 ,
+  position: 90 ,
   importance: #MEDIUM,
-  label: 'Days till start'
+  label: 'Days till Start'
   } ]
   @UI.identification: [ {
-    position: 100 ,
-    label: 'Days till start'
+    position: 90 ,
+    label: 'Days till Start'
   } ]
   DaysToStart;
 
-
-  @UI.lineItem: [ {
-    position: 110 ,
-    importance: #MEDIUM,
-    label: 'Created At'
-  } ]
-  @UI.identification: [ {
-    position: 110 ,
-    label: 'Created At'
-  } ]
-  CreatedAt;
 
   @UI.hidden: true
   LocalLastChanged;

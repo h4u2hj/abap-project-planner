@@ -34,8 +34,11 @@ CLASS lhc_project IMPLEMENTATION.
         " e.g. '1 day' or '5 days'
         lv_text = |{ lv_diff } day{ COND string( WHEN lv_diff = 1 THEN '' ELSE 's' ) }|.
       ELSE.
-        " today or already started in the past
-        lv_text = 'Project already started'.
+        IF ls_project-Status = 'C' OR ls_project-Status = 'X'.
+            lv_text = 'Project already finished'.
+        ELSE.
+            lv_text = 'Project already started'.
+        ENDIF.
       ENDIF.
 
       APPEND VALUE #( id = ls_project-id daystostart = lv_text )

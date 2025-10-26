@@ -9,6 +9,14 @@ define root view entity ZR_RAP_PROJECT
       description      as Description,
       type             as Type,
       status           as Status,
+      case status
+        when 'S' then 3
+        when 'N' then 2
+        when 'O' then 2
+        when 'X' then 1
+        when 'C' then 1
+        else 0
+      end as StatusCriticality,
       @Semantics.amount.currencyCode: 'Currency'
       cost             as Cost,
       currency         as Currency,
@@ -16,6 +24,7 @@ define root view entity ZR_RAP_PROJECT
       daystostart      as DaysToStart,
       @Semantics.user.createdBy: true
       createdby        as CreatedBy,
+      @Semantics.systemDateTime.createdAt: true
       createdat        as CreatedAt,
       @Semantics.user.lastChangedBy: true
       lastchangedby    as LastChangedBy,

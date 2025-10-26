@@ -24,7 +24,11 @@ define root view entity ZC_RAP_PROJECT
       Currency,
       PlannedStartDate,
       DaysToStart,
+      StatusCriticality,
       CreatedAt,
+      CreatedBy,
+      LastChangedAt,
+      LastChangedBy,
       LocalLastChanged
 
 }
