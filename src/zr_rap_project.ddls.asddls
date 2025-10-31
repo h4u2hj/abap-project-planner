@@ -3,6 +3,7 @@
 @EndUserText.label: 'CDS View for Project'
 define root view entity ZR_RAP_PROJECT
   as select from zrap_project as Project
+  association [0..1] to zrap_status as _Status on $projection.Status = _Status.status_id
 {
   key id               as ID,
       name             as Name,
@@ -16,11 +17,13 @@ define root view entity ZR_RAP_PROJECT
         when 'X' then 1
         when 'C' then 1
         else 0
-      end as StatusCriticality,
+      end              as StatusCriticality,
       @Semantics.amount.currencyCode: 'Currency'
       cost             as Cost,
+      budget           as Budget,
       currency         as Currency,
       plannedstartdate as PlannedStartDate,
+      plannedenddate   as PlannedEndDate,
       daystostart      as DaysToStart,
       @Semantics.user.createdBy: true
       createdby        as CreatedBy,
@@ -31,6 +34,7 @@ define root view entity ZR_RAP_PROJECT
       @Semantics.systemDateTime.lastChangedAt: true
       lastchangedat    as LastChangedAt,
       @Semantics.systemDateTime.localInstanceLastChangedAt: true
-      locallastchanged as LocalLastChanged
+      locallastchanged as LocalLastChanged,
+      _Status
 
 }

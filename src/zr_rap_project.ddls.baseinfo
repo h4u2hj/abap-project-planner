@@ -6,7 +6,9 @@
 "ZRAP_PROJECT"
 ],
 "ASSOCIATED":
-[],
+[
+"ZRAP_STATUS"
+],
 "BASE":
 [],
 "ANNO_REF":

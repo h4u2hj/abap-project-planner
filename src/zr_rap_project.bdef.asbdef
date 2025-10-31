@@ -4,28 +4,28 @@ with draft;
 
 define behavior for ZR_RAP_PROJECT alias Project
 persistent table zrap_project
-draft table ZRAP_PROJECT_D
+draft table zrap_project_d
 etag master Locallastchanged
 lock master total etag LastChangedAt
-authorization master( global )
+authorization master ( global )
 
 {
   field ( readonly )
-   ID,
-   CreatedBy,
-   LastChangedAt,
-   LastChangedBy,
-   LocalLastChanged;
+  ID,
+  CreatedBy,
+  LastChangedAt,
+  LastChangedBy,
+  LocalLastChanged;
 
   field ( numbering : managed )
-   ID;
+  ID;
 
 
   create;
   update;
   delete;
 
-  action checkStartedInTime result[1] $self;
+  action checkStartedInTime result [1] $self;
 
   draft action Edit;
   draft action Activate optimized;
@@ -33,21 +33,23 @@ authorization master( global )
   draft action Resume;
   draft determine action Prepare;
 
-  mapping for ZRAP_PROJECT
-  {
-    ID = id;
-    Name = name;
-    Description = description;
-    Type = type;
-    Status = status;
-    Cost = cost;
-    Currency = currency;
-    PlannedStartDate = plannedstartdate;
-    DaysToStart = daystostart;
-    CreatedBy = createdby;
-    CreatedAt = createdat;
-    LastChangedBy = lastchangedby;
-    LastChangedAt = lastchangedat;
-    LocalLastChanged = locallastchanged;
-  }
+  mapping for zrap_project
+    {
+      ID               = id;
+      Name             = name;
+      Description      = description;
+      Type             = type;
+      Status           = status;
+      Cost             = cost;
+      Budget           = budget;
+      Currency         = currency;
+      PlannedStartDate = plannedstartdate;
+      PlannedEndDate   = plannedenddate;
+      DaysToStart      = daystostart;
+      CreatedBy        = createdby;
+      CreatedAt        = createdat;
+      LastChangedBy    = lastchangedby;
+      LastChangedAt    = lastchangedat;
+      LocalLastChanged = locallastchanged;
+    }
 }

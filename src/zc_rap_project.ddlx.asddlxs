@@ -2,18 +2,56 @@
 @UI: {
   headerInfo: {
     typeName: 'Project',
-    typeNamePlural: 'Projects'
+    typeNamePlural: 'Projects',
+    title: { type: #STANDARD, value: 'Name'},
+    description: { type: #STANDARD, value: 'Description'}
   }
 }
 annotate view ZC_RAP_PROJECT with
 {
   @UI.facet:
-     [{
-       id: 'idIdentification',
-       type: #IDENTIFICATION_REFERENCE,
-       label: 'Project Plan Details',
+     [
+     {
+       label: 'General Information',
+       type: #COLLECTION,
+       id: 'GeneralInfo',
        position: 10
+     },
+     {
+        label: 'Administration',
+        type: #COLLECTION,
+        id: 'AdminIdentification',
+        position: 20
+     },
+     {
+       id: 'idIdentification',
+       type: #IDENTIFICATION_REFERENCE ,
+       label: 'Project Plan Details',
+       parentId: 'GeneralInfo',
+       position: 10
+     },
+     {
+        purpose: #STANDARD,
+        position: 20,
+        type: #FIELDGROUP_REFERENCE,
+        parentId: 'GeneralInfo',
+        label: 'Dates',
+        targetQualifier: 'DatesGroup'
+     },
+     {
+        purpose: #STANDARD,
+        position: 10,
+        type: #FIELDGROUP_REFERENCE,
+        parentId: 'AdminIdentification',
+        targetQualifier: 'AdminGroup'
+     },
+     {
+        purpose: #HEADER,
+        position: 10,
+        type: #DATAPOINT_REFERENCE,
+        targetQualifier: 'StatusData'
      }]
+
   @UI: {
   lineItem: [ { exclude: true } ,
   {
@@ -40,17 +78,14 @@ annotate view ZC_RAP_PROJECT with
     position: 10 ,
     label: 'Name'
   } ]
+  @Consumption.filter.hidden: true
   Name;
 
-  @UI.lineItem: [ {
-    position: 20 ,
-    importance: #MEDIUM,
-    label: 'Description'
-  } ]
   @UI.identification: [ {
     position: 20 ,
     label: 'Description'
   } ]
+  @Consumption.filter.hidden: true
   Description;
 
   @UI.lineItem: [ {
@@ -69,7 +104,8 @@ annotate view ZC_RAP_PROJECT with
     position: 40 ,
     importance: #MEDIUM,
     label: 'Status',
-    criticality: 'StatusCriticality'
+    criticality: 'StatusCriticality',
+    cssDefault.width: '8%'
   } ]
   @UI.identification: [ {
     position: 40 ,
@@ -77,6 +113,8 @@ annotate view ZC_RAP_PROJECT with
     criticality: 'StatusCriticality'
   } ]
   @UI.selectionField: [{position: 20}]
+  @UI.textArrangement: #TEXT_ONLY
+  @UI.dataPoint: { qualifier: 'StatusData', title: 'Status', criticality: 'StatusCriticality' }
   Status;
 
   @UI.lineItem: [ {
@@ -88,35 +126,77 @@ annotate view ZC_RAP_PROJECT with
     position: 50 ,
     label: 'Cost'
   } ]
+  @Consumption.filter.hidden: true
   Cost;
+  
+   @UI.lineItem: [ {
+    position: 70 ,
+    importance: #MEDIUM,
+    label: 'Budget'
+  } ]
+  @UI.identification: [ {
+    position: 70 ,
+    label: 'Budget'
+  } ]
+  @Consumption.filter.hidden: true
+  Budget;
 
   @UI.hidden: true
   Currency;
 
+  @Consumption.filter.selectionType: #SINGLE
   @UI.lineItem: [ {
-    position: 70 ,
+    position: 90 ,
     importance: #MEDIUM,
     label: 'Planned Start Date'
   } ]
-  @UI.identification: [ {
-    position: 70 ,
-    label: 'Planned Start Date'
-  } ]
   @UI.selectionField: [{position: 30}]
+  @UI.fieldGroup: [{qualifier: 'DatesGroup', position: 10, label: 'Planned Start Date' }]
   PlannedStartDate;
 
   @UI.lineItem: [ {
-  position: 90 ,
-  importance: #MEDIUM,
-  label: 'Days till Start'
+    position: 100 ,
+    importance: #MEDIUM,
+    label: 'Planned End Date'
   } ]
-  @UI.identification: [ {
-    position: 90 ,
+  @UI.selectionField: [{position: 40}]
+  @UI.fieldGroup: [{qualifier: 'DatesGroup', position: 20, label: 'Planned End Date' }]
+  @Consumption.filter.selectionType: #SINGLE
+  PlannedEndDate;
+
+  @UI.lineItem: [ {
+    position: 110 ,
+    importance: #MEDIUM,
     label: 'Days till Start'
   } ]
+  @UI.fieldGroup: [{qualifier: 'DatesGroup', position: 30, label: 'Days till Start' }]
+  @Consumption.filter.hidden: true
   DaysToStart;
 
+  @UI.fieldGroup: [{qualifier: 'AdminGroup', position: 10 }]
+  CreatedBy;
+
+  @UI.fieldGroup: [{qualifier: 'AdminGroup', position: 20 }]
+  @Consumption.filter.selectionType: #SINGLE
+  CreatedAt;
+
+  @UI.fieldGroup: [{qualifier: 'AdminGroup', position: 30 }]
+  LastChangedBy;
+
+  @UI.fieldGroup: [{qualifier: 'AdminGroup', position: 40 }]
+  @Consumption.filter.selectionType: #SINGLE
+  LastChangedAt;
+
+  @UI.hidden: true
+  StatusText;
+  
+  @Consumption.filter.hidden: true
+  StatusId;
+
+  @UI.hidden: true
+  StatusCriticality;
 
   @UI.hidden: true
   LocalLastChanged;
+
 }

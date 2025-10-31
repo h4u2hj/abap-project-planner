@@ -28,7 +28,7 @@ CLASS lhc_project IMPLEMENTATION.
 
     LOOP AT lt_projects INTO DATA(ls_project).
 
-      lv_diff = ls_project-plannedstartdate - lv_today.
+      lv_diff = ls_project-PlannedEndDate - lv_today.
 
       IF lv_diff > 0.
         " e.g. '1 day' or '5 days'
@@ -37,7 +37,7 @@ CLASS lhc_project IMPLEMENTATION.
         IF ls_project-Status = 'C' OR ls_project-Status = 'X'.
             lv_text = 'Project already finished'.
         ELSE.
-            lv_text = 'Project already started'.
+            lv_text = 'Project not started yet started'.
         ENDIF.
       ENDIF.
 
