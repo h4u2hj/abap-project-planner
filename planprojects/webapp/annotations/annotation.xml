@@ -2,17 +2,296 @@
     <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
         <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
     </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/HTML5.xml">
+        <edmx:Include Namespace="com.sap.vocabularies.HTML5.v1" Alias="HTML5"/>
+    </edmx:Reference>
     <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
         <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
-    </edmx:Reference>
-    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Communication.xml">
-        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
     </edmx:Reference>
     <edmx:Reference Uri="/sap/opu/odata4/sap/zui_rap_project_o4/srvd/sap/zui_rap_project_o4/0001/$metadata">
         <edmx:Include Namespace="com.sap.gateway.srvd.zui_rap_project_o4.v0001" Alias="SAP__self"/>
     </edmx:Reference>
     <edmx:DataServices>
         <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="local">
+            <Annotations Target="SAP__self.ProjectType">
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Name"/>
+                            <PropertyValue Property="Value" Path="Name"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Type"/>
+                            <PropertyValue Property="Value" Path="Type"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Status"/>
+                            <PropertyValue Property="Criticality" Path="StatusCriticality"/>
+                            <PropertyValue Property="Value" Path="Status"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+                            <Annotation Term="HTML5.CssDefaults">
+                                <Record>
+                                    <PropertyValue Property="width" String="8%"/>
+                                </Record>
+                            </Annotation>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Current Cost"/>
+                            <PropertyValue Property="Value" Path="Cost"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Budget"/>
+                            <PropertyValue Property="Value" Path="Budget"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Planned Start Date"/>
+                            <PropertyValue Property="Value" Path="PlannedStartDate"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Planned End Date"/>
+                            <PropertyValue Property="Value" Path="PlannedEndDate"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Days Remaining"/>
+                            <PropertyValue Property="Value" Path="DaysToStart"/>
+                            <Annotation Term="UI.Importance" EnumMember="UI.ImportanceType/Medium"/>
+                        </Record>
+                        <Record Type="UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Check Days till Start"/>
+                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_rap_project_o4.v0001.checkStartedInTime(com.sap.gateway.srvd.zui_rap_project_o4.v0001.ProjectType)"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGroupingType/Isolated"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="ID"/>
+                            <PropertyValue Property="Value" Path="ID"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Name"/>
+                            <PropertyValue Property="Value" Path="Name"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Description"/>
+                            <PropertyValue Property="Value" Path="Description"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Type"/>
+                            <PropertyValue Property="Value" Path="Type"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Status"/>
+                            <PropertyValue Property="Criticality" Path="StatusCriticality"/>
+                            <PropertyValue Property="Value" Path="Status"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="{@i18n>costCurrency}"/>
+                            <PropertyValue Property="Value" Path="Cost"/>
+                        </Record>
+                        <Record Type="UI.DataFieldForAction">
+                            <PropertyValue Property="Label" String="Check Days till Start"/>
+                            <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_rap_project_o4.v0001.checkStartedInTime(com.sap.gateway.srvd.zui_rap_project_o4.v0001.ProjectType)"/>
+                            <PropertyValue Property="InvocationGrouping" EnumMember="UI.OperationGroupingType/Isolated"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Budget"/>
+                            <PropertyValue Property="Label" String="Budget"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.DataPoint" Qualifier="Cost">
+                    <Record>
+                        <PropertyValue Property="Value" Path="Cost"/>
+                        <PropertyValue Property="MinimumValue" Decimal="0"/>
+                        <PropertyValue Property="MaximumValue" Decimal="1000"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Chart" Qualifier="Cost">
+                    <Record>
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Bullet"/>
+                        <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>Cost</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="MeasureAttributes">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="DataPoint" AnnotationPath="@UI.DataPoint#Cost"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                                    <PropertyValue Property="Measure" PropertyPath="Cost"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.CollectionFacet">
+                            <PropertyValue Property="Label" String="General Information"/>
+                            <PropertyValue Property="ID" String="GeneralInfo"/>
+                            <PropertyValue Property="Facets">
+                                <Collection>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Label" String="Project Plan Details"/>
+                                        <PropertyValue Property="ID" String="idIdentification"/>
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.Identification"/>
+                                    </Record>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Label" String="Dates"/>
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#DatesGroup"/>
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                        <Record Type="UI.CollectionFacet">
+                            <PropertyValue Property="Label" String="Administration"/>
+                            <PropertyValue Property="ID" String="AdminIdentification"/>
+                            <PropertyValue Property="Facets">
+                                <Collection>
+                                    <Record Type="UI.ReferenceFacet">
+                                        <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#AdminGroup"/>
+                                    </Record>
+                                </Collection>
+                            </PropertyValue>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderFacets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@UI.DataPoint#StatusData"/>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="ID" String="Cost"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.Chart#Cost1"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.DataPoint" Qualifier="Cost1">
+                    <Record>
+                        <PropertyValue Property="Value" Path="Cost"/>
+                        <PropertyValue Property="MaximumValue" Path="Budget"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Chart" Qualifier="Cost1">
+                    <Record>
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Pie"/>
+                        <PropertyValue Property="Title" String="Current Cost"/>
+                        <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>Cost</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="MeasureAttributes">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="DataPoint" AnnotationPath="@UI.DataPoint#Cost1"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                                    <PropertyValue Property="Measure" PropertyPath="Cost"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.DataPoint" Qualifier="Cost2">
+                    <Record>
+                        <PropertyValue Property="Value" Path="Cost"/>
+                        <PropertyValue Property="TargetValue" Path="Budget"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Chart" Qualifier="Cost2">
+                    <Record>
+                        <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Donut"/>
+                        <PropertyValue Property="Title" String="Cost"/>
+                        <PropertyValue Property="Measures">
+                            <Collection>
+                                <PropertyPath>Cost</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="MeasureAttributes">
+                            <Collection>
+                                <Record>
+                                    <PropertyValue Property="DataPoint" AnnotationPath="@UI.DataPoint#Cost2"/>
+                                    <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                                    <PropertyValue Property="Measure" PropertyPath="Cost"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="DatesGroup">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Planned Start Date"/>
+                                    <PropertyValue Property="Value" Path="PlannedStartDate"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Planned End Date"/>
+                                    <PropertyValue Property="Value" Path="PlannedEndDate"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Days Remaining"/>
+                                    <PropertyValue Property="Value" Path="DaysToStart"/>
+                                    <Annotation Term="UI.Hidden">
+                                        <Not>
+                                            <Path>IsActiveEntity</Path>
+                                        </Not>
+                                    </Annotation>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SAP__self.ProjectType/PlannedStartDate">
+                <Annotation Term="Common.Label" String="{@i18n>plannedStartDate}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ProjectType/PlannedEndDate">
+                <Annotation Term="Common.Label" String="{@i18n>plannedEndDate}"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ProjectType/Name">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ProjectType/Status">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+                <Annotation Term="Common.Text" Path="StatusText">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextFirst"/>
+                </Annotation>
+                <Annotation Term="Common.ValueList">
+                    <Record Type="Common.ValueListType">
+                        <PropertyValue Property="CollectionPath" String="Project"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Status"/>
+                                    <PropertyValue Property="ValueListProperty" String="StatusId"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Label" String="Status"/>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.ValueListWithFixedValues" Bool="true"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ProjectType/Type">
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ProjectType/StatusId">
+                <Annotation Term="Common.Text" Path="StatusText">
+                    <Annotation Term="UI.TextArrangement" EnumMember="UI.TextArrangementType/TextOnly"/>
+                </Annotation>
+            </Annotations>
         </Schema>
     </edmx:DataServices>
 </edmx:Edmx>

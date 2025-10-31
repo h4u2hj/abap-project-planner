@@ -58,11 +58,13 @@
                 <Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="40"/>
                 <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="40"/>
                 <Property Name="Cost" Type="Edm.Decimal" Nullable="false" Precision="10" Scale="variable"/>
+                <Property Name="Budget" Type="Edm.Decimal" Nullable="false" Precision="10" Scale="variable"/>
                 <Property Name="Currency" Type="Edm.String" Nullable="false" MaxLength="5"/>
                 <Property Name="PlannedStartDate" Type="Edm.Date"/>
                 <Property Name="PlannedEndDate" Type="Edm.Date"/>
                 <Property Name="DaysToStart" Type="Edm.String" Nullable="false" MaxLength="40"/>
                 <Property Name="StatusCriticality" Type="Edm.Byte" Nullable="false"/>
+                <Property Name="StatusId" Type="Edm.String" Nullable="false" MaxLength="1"/>
                 <Property Name="StatusText" Type="Edm.String" Nullable="false" MaxLength="100"/>
                 <Property Name="Status" Type="Edm.String" Nullable="false" MaxLength="1"/>
                 <Property Name="CreatedAt" Type="Edm.DateTimeOffset" Precision="7"/>
@@ -158,6 +160,11 @@
             </Annotations>
             <Annotations Target="SAP__self.ProjectType/Cost">
                 <Annotation Term="SAP__measures.ISOCurrency" Path="Currency"/>
+                <Annotation Term="SAP__UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ProjectType/Budget">
+                <Annotation Term="SAP__measures.ISOCurrency" Path="Currency"/>
+                <Annotation Term="SAP__UI.HiddenFilter"/>
             </Annotations>
             <Annotations Target="SAP__self.ProjectType/Currency">
                 <Annotation Term="SAP__common.IsCurrency"/>
@@ -167,6 +174,9 @@
                     </Collection>
                 </Annotation>
                 <Annotation Term="SAP__UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ProjectType/StatusId">
+                <Annotation Term="SAP__core.Computed"/>
             </Annotations>
             <Annotations Target="SAP__self.ProjectType/StatusText">
                 <Annotation Term="SAP__core.Computed"/>
@@ -264,8 +274,24 @@
                         <PropertyValue Property="FilterExpressionRestrictions">
                             <Collection>
                                 <Record>
+                                    <PropertyValue Property="Property" PropertyPath="PlannedStartDate"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SingleValue"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="PlannedEndDate"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SingleValue"/>
+                                </Record>
+                                <Record>
                                     <PropertyValue Property="Property" PropertyPath="StatusText"/>
                                     <PropertyValue Property="AllowedExpressions" String="SearchExpression"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="CreatedAt"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SingleValue"/>
+                                </Record>
+                                <Record>
+                                    <PropertyValue Property="Property" PropertyPath="LastChangedAt"/>
+                                    <PropertyValue Property="AllowedExpressions" String="SingleValue"/>
                                 </Record>
                                 <Record>
                                     <PropertyValue Property="Property" PropertyPath="DraftEntityCreationDateTime"/>
@@ -454,6 +480,10 @@
                             <PropertyValue Property="Label" String="Cost"/>
                             <PropertyValue Property="Value" Path="Cost"/>
                         </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Label" String="Budget"/>
+                            <PropertyValue Property="Value" Path="Budget"/>
+                        </Record>
                         <Record Type="SAP__UI.DataFieldForAction">
                             <PropertyValue Property="Label" String="Check Days till Start"/>
                             <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_rap_project_o4.v0001.checkStartedInTime(com.sap.gateway.srvd.zui_rap_project_o4.v0001.ProjectType)"/>
@@ -466,11 +496,6 @@
                         <Record Type="SAP__UI.DataField">
                             <PropertyValue Property="Label" String="Name"/>
                             <PropertyValue Property="Value" Path="Name"/>
-                            <Annotation Term="SAP__UI.Importance" EnumMember="SAP__UI.ImportanceType/Medium"/>
-                        </Record>
-                        <Record Type="SAP__UI.DataField">
-                            <PropertyValue Property="Label" String="Description"/>
-                            <PropertyValue Property="Value" Path="Description"/>
                             <Annotation Term="SAP__UI.Importance" EnumMember="SAP__UI.ImportanceType/Medium"/>
                         </Record>
                         <Record Type="SAP__UI.DataField">
@@ -492,6 +517,11 @@
                         <Record Type="SAP__UI.DataField">
                             <PropertyValue Property="Label" String="Cost"/>
                             <PropertyValue Property="Value" Path="Cost"/>
+                            <Annotation Term="SAP__UI.Importance" EnumMember="SAP__UI.ImportanceType/Medium"/>
+                        </Record>
+                        <Record Type="SAP__UI.DataField">
+                            <PropertyValue Property="Label" String="Budget"/>
+                            <PropertyValue Property="Value" Path="Budget"/>
                             <Annotation Term="SAP__UI.Importance" EnumMember="SAP__UI.ImportanceType/Medium"/>
                         </Record>
                         <Record Type="SAP__UI.DataField">
@@ -719,6 +749,15 @@
             <Annotations Target="SAP__self.I_DraftAdministrativeDataType/InProcessByUserDescription">
                 <Annotation Term="SAP__UI.Hidden"/>
                 <Annotation Term="SAP__common.Label" String="Draft In Process By (Description)"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ProjectType/Name">
+                <Annotation Term="SAP__UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ProjectType/Description">
+                <Annotation Term="SAP__UI.HiddenFilter"/>
+            </Annotations>
+            <Annotations Target="SAP__self.ProjectType/DaysToStart">
+                <Annotation Term="SAP__UI.HiddenFilter"/>
             </Annotations>
             <Annotations Target="SAP__self.ProjectType/StatusCriticality">
                 <Annotation Term="SAP__UI.Hidden"/>
