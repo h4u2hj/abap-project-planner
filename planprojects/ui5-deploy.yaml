@@ -13,11 +13,16 @@ builder:
     - name: deploy-to-abap
       afterTask: generateCachebusterInfo
       configuration:
+        log: 5
         target:
           url: https://m02p.ucc.cloud
           client: '203'
+          cloud: false
+        credentials:
+          username: env:ABAP_USER
+          password: env:ABAP_PASSWORD
         app:
-          name: PROJECT_PLANNER
+          name: Z_PROJECT_PLAN
           package: Z_RAP_PROJECT
           transport: M02K900116
         exclude:
