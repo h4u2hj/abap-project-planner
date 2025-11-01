@@ -3,7 +3,8 @@
 {
 "FROM":
 [
-"ZR_RAP_PROJECT"
+"ZR_RAP_PROJECT",
+"ZRAP_STATUS"
 ],
 "ASSOCIATED":
 [],

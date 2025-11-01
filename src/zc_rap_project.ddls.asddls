@@ -12,9 +12,10 @@ define root view entity ZC_RAP_PROJECT
       Description,
       @Search.defaultSearchElement: true
       Type,
-      Status,
       @Semantics.amount.currencyCode: 'Currency'
       Cost,
+      @Semantics.amount.currencyCode : 'Currency'
+      Budget,
       @Consumption.valueHelpDefinition: [ {
         entity: {
           name: 'I_Currency',
@@ -23,8 +24,13 @@ define root view entity ZC_RAP_PROJECT
       } ]
       Currency,
       PlannedStartDate,
+      PlannedEndDate,
       DaysToStart,
       StatusCriticality,
+      _Status.status_id as StatusId,
+      _Status.status_text as StatusText,
+      @ObjectModel.text.element: [ 'StatusText' ]
+      Status,
       CreatedAt,
       CreatedBy,
       LastChangedAt,
