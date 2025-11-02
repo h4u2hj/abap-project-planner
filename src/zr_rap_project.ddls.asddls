@@ -1,9 +1,9 @@
-@AccessControl.authorizationCheck: #CHECK
+    @AccessControl.authorizationCheck: #CHECK
 @Metadata.allowExtensions: true
 @EndUserText.label: 'CDS View for Project'
 define root view entity ZR_RAP_PROJECT
   as select from zrap_project as Project
-  association [0..1] to zrap_status as _Status on $projection.Status = _Status.status_id
+  association [0..1] to ZR_RAP_STATUS as _Status on $projection.Status = _Status.StatusId
 {
   key id               as ID,
       name             as Name,

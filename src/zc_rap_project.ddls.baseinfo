@@ -4,7 +4,7 @@
 "FROM":
 [
 "ZR_RAP_PROJECT",
-"ZRAP_STATUS"
+"ZR_RAP_STATUS"
 ],
 "ASSOCIATED":
 [],

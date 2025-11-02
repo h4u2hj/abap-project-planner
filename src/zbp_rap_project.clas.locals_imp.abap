@@ -37,7 +37,7 @@ CLASS lhc_project IMPLEMENTATION.
         IF ls_project-Status = 'C' OR ls_project-Status = 'X'.
             lv_text = 'Project already finished'.
         ELSE.
-            lv_text = 'Project not started yet started'.
+            lv_text = 'Project not started yet'.
         ENDIF.
       ENDIF.
 

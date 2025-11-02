@@ -27,9 +27,13 @@ define root view entity ZC_RAP_PROJECT
       PlannedEndDate,
       DaysToStart,
       StatusCriticality,
-      _Status.status_id as StatusId,
-      _Status.status_text as StatusText,
-      @ObjectModel.text.element: [ 'StatusText' ]
+      _Status.StatusText as StatusText,
+      @Consumption.valueHelpDefinition: [ {
+        entity: {
+          name: 'ZR_RAP_STATUS',
+          element: 'StatusId'
+        }
+      } ]
       Status,
       CreatedAt,
       CreatedBy,

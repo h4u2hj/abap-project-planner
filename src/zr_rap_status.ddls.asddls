@@ -5,7 +5,7 @@
 define view entity ZR_RAP_STATUS
   as select from zrap_status as Status
 {
-      @UI.textArrangement: #TEXT_ONLY
+      @UI.textArrangement: #TEXT_FIRST
       @ObjectModel.text.element: [ 'StatusText' ]
   key Status.status_id   as StatusId,
       @UI.hidden: true

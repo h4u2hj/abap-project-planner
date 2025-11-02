@@ -17,6 +17,11 @@ authorization master ( global )
   LastChangedBy,
   LocalLastChanged;
 
+  field( mandatory )
+  Name,
+  Type,
+  Status;
+
   field ( numbering : managed )
   ID;
 

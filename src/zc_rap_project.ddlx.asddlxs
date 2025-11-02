@@ -167,9 +167,9 @@ annotate view ZC_RAP_PROJECT with
   @UI.lineItem: [ {
     position: 110 ,
     importance: #MEDIUM,
-    label: 'Days till Start'
+    label: 'Days Remaining'
   } ]
-  @UI.fieldGroup: [{qualifier: 'DatesGroup', position: 30, label: 'Days till Start' }]
+  @UI.fieldGroup: [{qualifier: 'DatesGroup', position: 30, label: 'Days Remaining' }]
   @Consumption.filter.hidden: true
   DaysToStart;
 
