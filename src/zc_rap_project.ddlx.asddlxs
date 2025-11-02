@@ -57,13 +57,13 @@ annotate view ZC_RAP_PROJECT with
   {
       type: #FOR_ACTION,
       dataAction: 'checkStartedInTime' ,
-      label: 'Check Days till Start'
+      label: 'Check Days Remaining'
   } ] ,
   identification: [ { position: 1, label: 'ID' } ,
   {
       type: #FOR_ACTION,
       dataAction: 'checkStartedInTime',
-      label: 'Check Days till Start'
+      label: 'Check Days Remaining'
   }]}
 
   @UI.hidden: true
@@ -128,11 +128,11 @@ annotate view ZC_RAP_PROJECT with
   } ]
   @Consumption.filter.hidden: true
   Cost;
-  
-   @UI.lineItem: [ {
-    position: 70 ,
-    importance: #MEDIUM,
-    label: 'Budget'
+
+  @UI.lineItem: [ {
+   position: 70 ,
+   importance: #MEDIUM,
+   label: 'Budget'
   } ]
   @UI.identification: [ {
     position: 70 ,
@@ -189,9 +189,6 @@ annotate view ZC_RAP_PROJECT with
 
   @UI.hidden: true
   StatusText;
-  
-  @Consumption.filter.hidden: true
-  StatusId;
 
   @UI.hidden: true
   StatusCriticality;
