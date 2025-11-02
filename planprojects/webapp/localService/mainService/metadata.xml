@@ -364,13 +364,6 @@
                         <PropertyValue Property="Criticality" Path="StatusCriticality"/>
                     </Record>
                 </Annotation>
-                <Annotation Term="SAP__UI.HeaderFacets">
-                    <Collection>
-                        <Record Type="SAP__UI.ReferenceFacet">
-                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.DataPoint#StatusData"/>
-                        </Record>
-                    </Collection>
-                </Annotation>
                 <Annotation Term="SAP__UI.Facets">
                     <Collection>
                         <Record Type="SAP__UI.CollectionFacet">
@@ -400,6 +393,13 @@
                                     </Record>
                                 </Collection>
                             </PropertyValue>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="SAP__UI.HeaderFacets">
+                    <Collection>
+                        <Record Type="SAP__UI.ReferenceFacet">
+                            <PropertyValue Property="Target" AnnotationPath="@SAP__UI.DataPoint#StatusData"/>
                         </Record>
                     </Collection>
                 </Annotation>
@@ -491,7 +491,7 @@
                             <PropertyValue Property="Value" Path="Budget"/>
                         </Record>
                         <Record Type="SAP__UI.DataFieldForAction">
-                            <PropertyValue Property="Label" String="Check Days till Start"/>
+                            <PropertyValue Property="Label" String="Check Days Remaining"/>
                             <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_rap_project_o4.v0001.checkStartedInTime(com.sap.gateway.srvd.zui_rap_project_o4.v0001.ProjectType)"/>
                             <PropertyValue Property="InvocationGrouping" EnumMember="SAP__UI.OperationGroupingType/Isolated"/>
                         </Record>
@@ -546,7 +546,7 @@
                             <Annotation Term="SAP__UI.Importance" EnumMember="SAP__UI.ImportanceType/Medium"/>
                         </Record>
                         <Record Type="SAP__UI.DataFieldForAction">
-                            <PropertyValue Property="Label" String="Check Days till Start"/>
+                            <PropertyValue Property="Label" String="Check Days Remaining"/>
                             <PropertyValue Property="Action" String="com.sap.gateway.srvd.zui_rap_project_o4.v0001.checkStartedInTime(com.sap.gateway.srvd.zui_rap_project_o4.v0001.ProjectType)"/>
                             <PropertyValue Property="InvocationGrouping" EnumMember="SAP__UI.OperationGroupingType/Isolated"/>
                         </Record>
