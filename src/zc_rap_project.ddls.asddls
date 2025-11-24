@@ -32,7 +32,8 @@ define root view entity ZC_RAP_PROJECT
         entity: {
           name: 'ZR_RAP_STATUS',
           element: 'StatusId'
-        }
+        },
+        label: 'Status'
       } ]
       Status,
       CreatedAt,

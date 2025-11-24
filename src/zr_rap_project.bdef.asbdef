@@ -17,7 +17,7 @@ authorization master ( global )
   LastChangedBy,
   LocalLastChanged;
 
-  field( mandatory )
+  field ( mandatory )
   Name,
   Type,
   Status;

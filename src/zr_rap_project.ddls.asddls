@@ -1,4 +1,4 @@
-    @AccessControl.authorizationCheck: #CHECK
+@AccessControl.authorizationCheck: #CHECK
 @Metadata.allowExtensions: true
 @EndUserText.label: 'CDS View for Project'
 define root view entity ZR_RAP_PROJECT
