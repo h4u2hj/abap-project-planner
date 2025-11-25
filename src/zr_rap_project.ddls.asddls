@@ -16,6 +16,9 @@ define root view entity ZR_RAP_PROJECT
         when 'O' then 2
         when 'X' then 1
         when 'C' then 1
+        when 'H' then 2
+        when 'D' then 3
+        when 'P' then 3
         else 0
       end              as StatusCriticality,
       @Semantics.amount.currencyCode: 'Currency'
